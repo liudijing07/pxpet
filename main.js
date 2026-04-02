@@ -268,11 +268,6 @@ app.whenReady().then(() => {
   createTray();
   bridge = new OpenClawBridge(mainWindow);
   bridge.start();
-
-  // Auto-open settings if no gateway configured
-  if (!bridge.gatewayUrl || !bridge.gatewayToken) {
-    createSettingsWindow();
-  }
 });
 app.on('window-all-closed', () => {});
 app.on('before-quit', () => { if (bridge) bridge.stop(); });
