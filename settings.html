@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>OpenClaw Settings</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, 'Segoe UI', sans-serif;
+      background: #1e1e2e; color: #cdd6f4;
+      padding: 20px; user-select: none;
+    }
+    h2 { font-size: 16px; margin-bottom: 16px; color: #89b4fa; }
+    .field { margin-bottom: 14px; }
+    label { display: block; font-size: 12px; color: #a6adc8; margin-bottom: 4px; }
+    input {
+      width: 100%; padding: 8px 10px; border-radius: 6px;
+      border: 1px solid #45475a; background: #313244; color: #cdd6f4;
+      font-size: 13px; outline: none;
+    }
+    input:focus { border-color: #89b4fa; }
+    .buttons { display: flex; gap: 8px; margin-top: 18px; }
+    button {
+      flex: 1; padding: 8px; border-radius: 6px; border: none;
+      font-size: 13px; cursor: pointer;
+    }
+    .btn-save { background: #89b4fa; color: #1e1e2e; font-weight: bold; }
+    .btn-save:hover { background: #74c7ec; }
+    .btn-cancel { background: #45475a; color: #cdd6f4; }
+    .btn-cancel:hover { background: #585b70; }
+    .status { font-size: 12px; margin-top: 10px; min-height: 16px; }
+    .status.ok { color: #a6e3a1; }
+    .status.err { color: #f38ba8; }
+    .hint { font-size: 11px; color: #6c7086; margin-top: 12px; line-height: 1.5; }
+    .titlebar {
+      display: flex; justify-content: space-between; align-items: center;
+      margin: -20px -20px 16px -20px; padding: 8px 12px;
+      -webkit-app-region: drag; background: #181825;
+    }
+    .titlebar span { font-size: 13px; font-weight: bold; color: #89b4fa; }
+    .titlebar button {
+      -webkit-app-region: no-drag; background: none; border: none;
+      color: #6c7086; font-size: 16px; cursor: pointer; padding: 2px 6px;
+    }
+    .titlebar button:hover { color: #f38ba8; }
+  </style>
+</head>
+<body>
+  <div class="titlebar">
+    <span>⚙️ OpenClaw Settings</span>
+    <button onclick="window.close()">✕</button>
+  </div>
+
+  <div class="field">
+    <label>Gateway URL</label>
+    <input type="text" id="url" placeholder="http://127.0.0.1:18789/v1/chat/completions">
+  </div>
+
+  <div class="field">
+    <label>Gateway Token</label>
+    <input type="password" id="token" placeholder="your-gateway-token">
+  </div>
+
+  <div class="buttons">
+    <button class="btn-cancel" onclick="handleCancel()">Cancel</button>
+    <button class="btn-save" onclick="handleSave()">Save & Connect</button>
+  </div>
+
+  <div class="status" id="status"></div>
+
+  <div class="hint">
+    💡 Find your token in OpenClaw config: <code>~/.openclaw/openclaw.json</code><br>
+    Default URL: <code>http://127.0.0.1:18789/v1/chat/completions</code>
+  </div>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+
+    // Load current config
+    const config = ipcRenderer.sendSync('get-openclaw-config');
+    if (config.url) document.getElementById('url').value = config.url;
+    if (config.token) document.getElementById('token').value = config.token;
+
+    function handleSave() {
+      const url = document.getElementById('url').value.trim();
+      const token = document.getElementById('token').value.trim();
+      const status = document.getElementById('status');
+
+      if (!url || !token) {
+        status.textContent = '❌ Please fill in both fields';
+        status.className = 'status err';
+        return;
+      }
+
+      status.textContent = '⏳ Testing connection...';
+      status.className = 'status';
+
+      ipcRenderer.invoke('save-openclaw-config', { url, token }).then((result) => {
+        if (result.ok) {
+          status.textContent = '✅ Connected! Settings saved.';
+          status.className = 'status ok';
+          setTimeout(() => window.close(), 1000);
+        } else {
+          status.textContent = '❌ ' + (result.error || 'Connection failed');
+          status.className = 'status err';
+        }
+      });
+    }
+
+    function handleCancel() {
+      window.close();
+    }
+
+    // Enter key to save
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleSave();
+      if (e.key === 'Escape') handleCancel();
+    });
+  </script>
+</body>
+</html>

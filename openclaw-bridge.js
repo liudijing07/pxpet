@@ -68,7 +68,21 @@ class OpenClawBridge {
       return;
     }
 
-    // 2. Try environment variables
+    // 2. Try user data config (saved via settings UI)
+    try {
+      const { app } = require('electron');
+      const userConfigPath = path.join(app.getPath('userData'), 'openclaw-config.json');
+      const raw = fs.readFileSync(userConfigPath, 'utf-8');
+      const config = JSON.parse(raw);
+      if (config.gatewayUrl && config.gatewayToken) {
+        this.gatewayUrl = config.gatewayUrl;
+        this.gatewayToken = config.gatewayToken;
+        console.log(`[OpenClaw] Gateway (user config): ${this.gatewayUrl}`);
+        return;
+      }
+    } catch (e) { /* continue */ }
+
+    // 3. Try environment variables
     if (process.env.OPENCLAW_GATEWAY_URL && process.env.OPENCLAW_GATEWAY_TOKEN) {
       this.gatewayUrl = process.env.OPENCLAW_GATEWAY_URL;
       this.gatewayToken = process.env.OPENCLAW_GATEWAY_TOKEN;
@@ -76,7 +90,7 @@ class OpenClawBridge {
       return;
     }
 
-    // 3. Try OpenClaw config files
+    // 4. Try OpenClaw config files
     const home = process.env.HOME || process.env.USERPROFILE;
     if (home) {
       const configPaths = [

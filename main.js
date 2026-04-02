@@ -7,7 +7,7 @@ app.commandLine.appendSwitch('disable-gpu');
 app.commandLine.appendSwitch('enable-transparent-visuals');
 app.disableHardwareAcceleration();
 
-let mainWindow, chatWindow = null, tray, bridge;
+let mainWindow, chatWindow = null, settingsWindow = null, tray, bridge;
 let isDragging = false, isWalking = false;
 
 const CHARACTERS = ['MascotAzusa', 'MascotYui', 'MascotMio', 'MascotRitsu', 'MascotTsumugi'];
@@ -112,6 +112,7 @@ function showContextMenu() {
       const { width: sw, height: sh } = screen.getPrimaryDisplay().workAreaSize;
       mainWindow.setPosition(sw - 200, sh - 150);
     }},
+    { label: '⚙️ OpenClaw 设置', click: () => createSettingsWindow() },
     { type: 'separator' },
     { label: '❌ 退出', click: () => app.quit() },
   ]);
@@ -130,6 +131,7 @@ function createTray() {
     { label: 'pxpet Desktop Pet ♪', enabled: false },
     { type: 'separator' },
     { label: '💬 跟曼波聊天', click: () => createChatWindow() },
+    { label: '⚙️ OpenClaw 设置', click: () => createSettingsWindow() },
     { type: 'separator' },
     { label: '❌ 退出', click: () => app.quit() },
   ]));
@@ -200,6 +202,64 @@ ipcMain.handle('openclaw-chat', async (e, message, imageDataUrl) => {
 });
 ipcMain.on('push-openclaw-message', (e, message) => {
   if (chatWindow && !chatWindow.isDestroyed()) chatWindow.webContents.send('openclaw-push', message);
+});
+
+// Settings window
+function createSettingsWindow() {
+  if (settingsWindow && !settingsWindow.isDestroyed()) { settingsWindow.focus(); return; }
+  settingsWindow = new BrowserWindow({
+    width: 400, height: 340,
+    frame: false, resizable: false, alwaysOnTop: true,
+    skipTaskbar: true,
+    webPreferences: { nodeIntegration: true, contextIsolation: false },
+  });
+  settingsWindow.loadFile('settings.html');
+  settingsWindow.on('closed', () => { settingsWindow = null; });
+}
+
+// Settings IPC
+ipcMain.on('get-openclaw-config', (e) => {
+  e.returnValue = {
+    url: bridge ? bridge.gatewayUrl : '',
+    token: bridge ? bridge.gatewayToken : '',
+  };
+});
+
+ipcMain.handle('save-openclaw-config', async (e, { url, token }) => {
+  try {
+    // Test connection first
+    const http = require('http');
+    const https = require('https');
+    const testResult = await new Promise((resolve) => {
+      const parsedUrl = new URL(url.replace('/v1/chat/completions', '/'));
+      const mod = parsedUrl.protocol === 'https:' ? https : http;
+      const req = mod.request(parsedUrl, { method: 'GET', timeout: 5000 }, (res) => {
+        resolve({ ok: true });
+      });
+      req.on('error', (err) => resolve({ ok: false, error: err.message }));
+      req.on('timeout', () => { req.destroy(); resolve({ ok: false, error: 'Timeout' }); });
+      req.end();
+    });
+
+    // Save to user data directory
+    const configDir = app.getPath('userData');
+    const configPath = path.join(configDir, 'openclaw-config.json');
+    fs.writeFileSync(configPath, JSON.stringify({ gatewayUrl: url, gatewayToken: token }, null, 2));
+
+    // Also write .env in app dir for dev mode
+    const envPath = path.join(__dirname, '.env');
+    fs.writeFileSync(envPath, `OPENCLAW_GATEWAY_URL=${url}\nOPENCLAW_GATEWAY_TOKEN=${token}\n`);
+
+    // Reload bridge config
+    if (bridge) {
+      bridge.gatewayUrl = url;
+      bridge.gatewayToken = token;
+    }
+
+    return { ok: true };
+  } catch (err) {
+    return { ok: false, error: err.message };
+  }
 });
 
 // App
