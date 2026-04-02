@@ -145,3 +145,9 @@ These assets are included for personal/educational use only. **Do not use them c
 - EL01 format reverse-engineered by [liudijing07](https://github.com/liudijing07)
 - Built with [Electron](https://www.electronjs.org/)
 - AI integration via [OpenClaw](https://github.com/openclaw/openclaw)
+
+## 🗺️ Roadmap
+
+- [ ] **Bug fixes & stability** — Fix known issues from v1.0.0, improve error handling
+- [ ] **Chat-controlled animations** — Trigger pet actions (walk, dance, wave, etc.) through natural language chat commands via OpenClaw
+- [ ] **Modular animation & sound system** — Decouple sprite and audio assets into configurable modules, so users can add custom characters, animations, and voice packs without modifying code
