@@ -148,7 +148,7 @@ class OpenClawBridge {
 
     if (req.method === 'GET' && pathname === '/status') {
       res.writeHead(200);
-      res.end(JSON.stringify({ ok: true, app: 'pxpet', version: '2.0.0' }));
+      res.end(JSON.stringify({ ok: true, app: 'pxpet', version: '1.0.0' }));
       return;
     }
 
