@@ -1,0 +1,257 @@
+{
+  "character": "MascotRitsu",
+  "animations": {
+    "drag": {
+      "frame_count": 4,
+      "fps": 6,
+      "loop": true,
+      "frames": [
+        {
+          "file": "drag_00.png",
+          "size": [
+            70,
+            88
+          ]
+        },
+        {
+          "file": "drag_01.png",
+          "size": [
+            70,
+            88
+          ]
+        },
+        {
+          "file": "drag_02.png",
+          "size": [
+            70,
+            89
+          ]
+        },
+        {
+          "file": "drag_03.png",
+          "size": [
+            70,
+            88
+          ]
+        }
+      ]
+    },
+    "idle": {
+      "frame_count": 4,
+      "fps": 6,
+      "loop": true,
+      "frames": [
+        {
+          "file": "idle_00.png",
+          "size": [
+            55,
+            86
+          ]
+        },
+        {
+          "file": "idle_01.png",
+          "size": [
+            55,
+            87
+          ]
+        },
+        {
+          "file": "idle_02.png",
+          "size": [
+            55,
+            88
+          ]
+        },
+        {
+          "file": "idle_03.png",
+          "size": [
+            55,
+            87
+          ]
+        }
+      ]
+    },
+    "special1": {
+      "frame_count": 6,
+      "fps": 6,
+      "loop": false,
+      "frames": [
+        {
+          "file": "special1_00.png",
+          "size": [
+            55,
+            85
+          ]
+        },
+        {
+          "file": "special1_01.png",
+          "size": [
+            55,
+            86
+          ]
+        },
+        {
+          "file": "special1_02.png",
+          "size": [
+            55,
+            86
+          ]
+        },
+        {
+          "file": "special1_03.png",
+          "size": [
+            55,
+            85
+          ]
+        },
+        {
+          "file": "special1_04.png",
+          "size": [
+            55,
+            86
+          ]
+        },
+        {
+          "file": "special1_05.png",
+          "size": [
+            55,
+            86
+          ]
+        }
+      ]
+    },
+    "special2": {
+      "frame_count": 4,
+      "fps": 6,
+      "loop": false,
+      "frames": [
+        {
+          "file": "special2_00.png",
+          "size": [
+            62,
+            88
+          ]
+        },
+        {
+          "file": "special2_01.png",
+          "size": [
+            68,
+            88
+          ]
+        },
+        {
+          "file": "special2_02.png",
+          "size": [
+            75,
+            86
+          ]
+        },
+        {
+          "file": "special2_03.png",
+          "size": [
+            68,
+            88
+          ]
+        }
+      ]
+    },
+    "walk_left": {
+      "frame_count": 6,
+      "fps": 6,
+      "loop": true,
+      "frames": [
+        {
+          "file": "walk_left_00.png",
+          "size": [
+            55,
+            87
+          ]
+        },
+        {
+          "file": "walk_left_01.png",
+          "size": [
+            55,
+            88
+          ]
+        },
+        {
+          "file": "walk_left_02.png",
+          "size": [
+            55,
+            89
+          ]
+        },
+        {
+          "file": "walk_left_03.png",
+          "size": [
+            55,
+            87
+          ]
+        },
+        {
+          "file": "walk_left_04.png",
+          "size": [
+            55,
+            88
+          ]
+        },
+        {
+          "file": "walk_left_05.png",
+          "size": [
+            55,
+            89
+          ]
+        }
+      ]
+    },
+    "walk_right": {
+      "frame_count": 6,
+      "fps": 6,
+      "loop": true,
+      "frames": [
+        {
+          "file": "walk_right_00.png",
+          "size": [
+            55,
+            87
+          ]
+        },
+        {
+          "file": "walk_right_01.png",
+          "size": [
+            55,
+            88
+          ]
+        },
+        {
+          "file": "walk_right_02.png",
+          "size": [
+            55,
+            89
+          ]
+        },
+        {
+          "file": "walk_right_03.png",
+          "size": [
+            55,
+            87
+          ]
+        },
+        {
+          "file": "walk_right_04.png",
+          "size": [
+            55,
+            88
+          ]
+        },
+        {
+          "file": "walk_right_05.png",
+          "size": [
+            55,
+            89
+          ]
+        }
+      ]
+    }
+  }
+}

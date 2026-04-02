@@ -1,0 +1,278 @@
+{
+  "character": "MascotYui",
+  "animations": {
+    "drag": {
+      "frame_count": 4,
+      "fps": 6,
+      "loop": true,
+      "frames": [
+        {
+          "file": "drag_00.png",
+          "size": [
+            69,
+            80
+          ]
+        },
+        {
+          "file": "drag_01.png",
+          "size": [
+            69,
+            82
+          ]
+        },
+        {
+          "file": "drag_02.png",
+          "size": [
+            68,
+            83
+          ]
+        },
+        {
+          "file": "drag_03.png",
+          "size": [
+            68,
+            82
+          ]
+        }
+      ]
+    },
+    "idle": {
+      "frame_count": 4,
+      "fps": 6,
+      "loop": true,
+      "frames": [
+        {
+          "file": "idle_00.png",
+          "size": [
+            71,
+            87
+          ]
+        },
+        {
+          "file": "idle_01.png",
+          "size": [
+            70,
+            88
+          ]
+        },
+        {
+          "file": "idle_02.png",
+          "size": [
+            71,
+            89
+          ]
+        },
+        {
+          "file": "idle_03.png",
+          "size": [
+            71,
+            88
+          ]
+        }
+      ]
+    },
+    "special1": {
+      "frame_count": 2,
+      "fps": 6,
+      "loop": false,
+      "frames": [
+        {
+          "file": "special1_00.png",
+          "size": [
+            62,
+            90
+          ]
+        },
+        {
+          "file": "special1_01.png",
+          "size": [
+            62,
+            90
+          ]
+        }
+      ]
+    },
+    "special2": {
+      "frame_count": 4,
+      "fps": 6,
+      "loop": false,
+      "frames": [
+        {
+          "file": "special2_00.png",
+          "size": [
+            61,
+            85
+          ]
+        },
+        {
+          "file": "special2_01.png",
+          "size": [
+            61,
+            85
+          ]
+        },
+        {
+          "file": "special2_02.png",
+          "size": [
+            62,
+            84
+          ]
+        },
+        {
+          "file": "special2_03.png",
+          "size": [
+            60,
+            85
+          ]
+        }
+      ]
+    },
+    "special3": {
+      "frame_count": 6,
+      "fps": 6,
+      "loop": false,
+      "frames": [
+        {
+          "file": "special3_00.png",
+          "size": [
+            63,
+            88
+          ]
+        },
+        {
+          "file": "special3_01.png",
+          "size": [
+            68,
+            88
+          ]
+        },
+        {
+          "file": "special3_02.png",
+          "size": [
+            64,
+            84
+          ]
+        },
+        {
+          "file": "special3_03.png",
+          "size": [
+            63,
+            88
+          ]
+        },
+        {
+          "file": "special3_04.png",
+          "size": [
+            64,
+            88
+          ]
+        },
+        {
+          "file": "special3_05.png",
+          "size": [
+            67,
+            84
+          ]
+        }
+      ]
+    },
+    "walk_left": {
+      "frame_count": 6,
+      "fps": 6,
+      "loop": true,
+      "frames": [
+        {
+          "file": "walk_left_00.png",
+          "size": [
+            66,
+            87
+          ]
+        },
+        {
+          "file": "walk_left_01.png",
+          "size": [
+            66,
+            88
+          ]
+        },
+        {
+          "file": "walk_left_02.png",
+          "size": [
+            66,
+            89
+          ]
+        },
+        {
+          "file": "walk_left_03.png",
+          "size": [
+            66,
+            87
+          ]
+        },
+        {
+          "file": "walk_left_04.png",
+          "size": [
+            66,
+            88
+          ]
+        },
+        {
+          "file": "walk_left_05.png",
+          "size": [
+            66,
+            89
+          ]
+        }
+      ]
+    },
+    "walk_right": {
+      "frame_count": 6,
+      "fps": 6,
+      "loop": true,
+      "frames": [
+        {
+          "file": "walk_right_00.png",
+          "size": [
+            66,
+            87
+          ]
+        },
+        {
+          "file": "walk_right_01.png",
+          "size": [
+            66,
+            88
+          ]
+        },
+        {
+          "file": "walk_right_02.png",
+          "size": [
+            66,
+            89
+          ]
+        },
+        {
+          "file": "walk_right_03.png",
+          "size": [
+            66,
+            87
+          ]
+        },
+        {
+          "file": "walk_right_04.png",
+          "size": [
+            66,
+            88
+          ]
+        },
+        {
+          "file": "walk_right_05.png",
+          "size": [
+            66,
+            89
+          ]
+        }
+      ]
+    }
+  }
+}

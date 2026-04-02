@@ -1,0 +1,20 @@
+{
+  "name": "pxpet",
+  "version": "2.0.0",
+  "description": "Pixel art desktop pet with OpenClaw AI integration",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev"
+  },
+  "keywords": ["desktop-pet", "electron", "pixel-art", "openclaw", "ai"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liudijing07/pxpet.git"
+  },
+  "dependencies": {
+    "electron": "^35.2.1",
+    "marked": "^15.0.0"
+  }
+}

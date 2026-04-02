@@ -1,0 +1,236 @@
+{
+  "character": "MascotAzusa",
+  "animations": {
+    "drag": {
+      "frame_count": 2,
+      "fps": 6,
+      "loop": true,
+      "frames": [
+        {
+          "file": "drag_00.png",
+          "size": [
+            107,
+            82
+          ]
+        },
+        {
+          "file": "drag_01.png",
+          "size": [
+            107,
+            82
+          ]
+        }
+      ]
+    },
+    "idle": {
+      "frame_count": 4,
+      "fps": 6,
+      "loop": true,
+      "frames": [
+        {
+          "file": "idle_00.png",
+          "size": [
+            59,
+            83
+          ]
+        },
+        {
+          "file": "idle_01.png",
+          "size": [
+            57,
+            84
+          ]
+        },
+        {
+          "file": "idle_02.png",
+          "size": [
+            59,
+            85
+          ]
+        },
+        {
+          "file": "idle_03.png",
+          "size": [
+            59,
+            84
+          ]
+        }
+      ]
+    },
+    "special1": {
+      "frame_count": 6,
+      "fps": 6,
+      "loop": false,
+      "frames": [
+        {
+          "file": "special1_00.png",
+          "size": [
+            92,
+            77
+          ]
+        },
+        {
+          "file": "special1_01.png",
+          "size": [
+            90,
+            88
+          ]
+        },
+        {
+          "file": "special1_02.png",
+          "size": [
+            92,
+            82
+          ]
+        },
+        {
+          "file": "special1_03.png",
+          "size": [
+            92,
+            81
+          ]
+        },
+        {
+          "file": "special1_04.png",
+          "size": [
+            92,
+            81
+          ]
+        },
+        {
+          "file": "special1_05.png",
+          "size": [
+            92,
+            81
+          ]
+        }
+      ]
+    },
+    "special2": {
+      "frame_count": 3,
+      "fps": 6,
+      "loop": false,
+      "frames": [
+        {
+          "file": "special2_00.png",
+          "size": [
+            63,
+            74
+          ]
+        },
+        {
+          "file": "special2_01.png",
+          "size": [
+            51,
+            75
+          ]
+        },
+        {
+          "file": "special2_02.png",
+          "size": [
+            54,
+            75
+          ]
+        }
+      ]
+    },
+    "walk_left": {
+      "frame_count": 6,
+      "fps": 6,
+      "loop": true,
+      "frames": [
+        {
+          "file": "walk_left_00.png",
+          "size": [
+            66,
+            84
+          ]
+        },
+        {
+          "file": "walk_left_01.png",
+          "size": [
+            66,
+            85
+          ]
+        },
+        {
+          "file": "walk_left_02.png",
+          "size": [
+            66,
+            86
+          ]
+        },
+        {
+          "file": "walk_left_03.png",
+          "size": [
+            66,
+            84
+          ]
+        },
+        {
+          "file": "walk_left_04.png",
+          "size": [
+            66,
+            85
+          ]
+        },
+        {
+          "file": "walk_left_05.png",
+          "size": [
+            66,
+            86
+          ]
+        }
+      ]
+    },
+    "walk_right": {
+      "frame_count": 6,
+      "fps": 6,
+      "loop": true,
+      "frames": [
+        {
+          "file": "walk_right_00.png",
+          "size": [
+            66,
+            84
+          ]
+        },
+        {
+          "file": "walk_right_01.png",
+          "size": [
+            66,
+            85
+          ]
+        },
+        {
+          "file": "walk_right_02.png",
+          "size": [
+            66,
+            86
+          ]
+        },
+        {
+          "file": "walk_right_03.png",
+          "size": [
+            66,
+            84
+          ]
+        },
+        {
+          "file": "walk_right_04.png",
+          "size": [
+            66,
+            85
+          ]
+        },
+        {
+          "file": "walk_right_05.png",
+          "size": [
+            66,
+            86
+          ]
+        }
+      ]
+    }
+  }
+}
