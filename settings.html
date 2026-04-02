@@ -96,12 +96,15 @@
       status.className = 'status';
 
       ipcRenderer.invoke('save-openclaw-config', { url, token }).then((result) => {
-        if (result.ok) {
+        if (result.ok && !result.warning) {
           status.textContent = '✅ Connected! Settings saved.';
           status.className = 'status ok';
-          setTimeout(() => window.close(), 1000);
+          setTimeout(() => window.close(), 1500);
+        } else if (result.ok && result.warning) {
+          status.textContent = '⚠️ ' + result.warning;
+          status.className = 'status err';
         } else {
-          status.textContent = '❌ ' + (result.error || 'Connection failed');
+          status.textContent = '❌ ' + (result.error || 'Save failed');
           status.className = 'status err';
         }
       });

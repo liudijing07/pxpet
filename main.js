@@ -241,7 +241,7 @@ ipcMain.handle('save-openclaw-config', async (e, { url, token }) => {
       req.end();
     });
 
-    // Save to user data directory
+    // Save config regardless (user might fix gateway later)
     const configDir = app.getPath('userData');
     const configPath = path.join(configDir, 'openclaw-config.json');
     fs.writeFileSync(configPath, JSON.stringify({ gatewayUrl: url, gatewayToken: token }, null, 2));
@@ -252,7 +252,11 @@ ipcMain.handle('save-openclaw-config', async (e, { url, token }) => {
       bridge.gatewayToken = token;
     }
 
-    return { ok: true };
+    if (testResult.ok) {
+      return { ok: true };
+    } else {
+      return { ok: true, warning: `Saved, but gateway unreachable: ${testResult.error}` };
+    }
   } catch (err) {
     return { ok: false, error: err.message };
   }
