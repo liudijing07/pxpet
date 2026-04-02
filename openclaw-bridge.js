@@ -58,17 +58,7 @@ class OpenClawBridge {
   }
 
   _loadConfig() {
-    // 1. Try .env file in app directory (highest priority)
-    const envPath = path.join(__dirname, '.env');
-    const envVars = this._parseEnvFile(envPath);
-    if (envVars && envVars.OPENCLAW_GATEWAY_URL && envVars.OPENCLAW_GATEWAY_TOKEN) {
-      this.gatewayUrl = envVars.OPENCLAW_GATEWAY_URL;
-      this.gatewayToken = envVars.OPENCLAW_GATEWAY_TOKEN;
-      console.log(`[OpenClaw] Gateway (.env): ${this.gatewayUrl}`);
-      return;
-    }
-
-    // 2. Try user data config (saved via settings UI)
+    // 1. Try user data config (saved via settings UI) — works in packaged app
     try {
       const { app } = require('electron');
       const userConfigPath = path.join(app.getPath('userData'), 'openclaw-config.json');
@@ -81,6 +71,16 @@ class OpenClawBridge {
         return;
       }
     } catch (e) { /* continue */ }
+
+    // 2. Try .env file in app directory (dev mode)
+    const envPath = path.join(__dirname, '.env');
+    const envVars = this._parseEnvFile(envPath);
+    if (envVars && envVars.OPENCLAW_GATEWAY_URL && envVars.OPENCLAW_GATEWAY_TOKEN) {
+      this.gatewayUrl = envVars.OPENCLAW_GATEWAY_URL;
+      this.gatewayToken = envVars.OPENCLAW_GATEWAY_TOKEN;
+      console.log(`[OpenClaw] Gateway (.env): ${this.gatewayUrl}`);
+      return;
+    }
 
     // 3. Try environment variables
     if (process.env.OPENCLAW_GATEWAY_URL && process.env.OPENCLAW_GATEWAY_TOKEN) {

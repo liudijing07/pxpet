@@ -246,10 +246,6 @@ ipcMain.handle('save-openclaw-config', async (e, { url, token }) => {
     const configPath = path.join(configDir, 'openclaw-config.json');
     fs.writeFileSync(configPath, JSON.stringify({ gatewayUrl: url, gatewayToken: token }, null, 2));
 
-    // Also write .env in app dir for dev mode
-    const envPath = path.join(__dirname, '.env');
-    fs.writeFileSync(envPath, `OPENCLAW_GATEWAY_URL=${url}\nOPENCLAW_GATEWAY_TOKEN=${token}\n`);
-
     // Reload bridge config
     if (bridge) {
       bridge.gatewayUrl = url;
