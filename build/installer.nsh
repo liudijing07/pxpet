@@ -1,5 +1,3 @@
-!macro customInit
-  ${IfNot} ${isUpdated}
-    StrCpy $INSTDIR "$LOCALAPPDATA\Programs\pxpet"
-  ${EndIf}
+!macro preInit
+  StrCpy $INSTDIR "$LOCALAPPDATA\Programs\pxpet"
 !macroend
