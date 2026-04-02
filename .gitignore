@@ -1,4 +1,5 @@
 node_modules/
+dist/
 .env
 openclaw.json
 chat-history.json

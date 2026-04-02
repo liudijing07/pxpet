@@ -1,11 +1,13 @@
 {
   "name": "pxpet",
   "version": "1.0.0",
-  "description": "Pixel art desktop pet with OpenClaw AI integration",
+  "description": "Pixel art desktop pet powered by OpenClaw",
   "main": "main.js",
+  "author": "liudijing07",
   "scripts": {
     "start": "electron .",
-    "dev": "electron . --dev"
+    "dev": "electron . --dev",
+    "build": "electron-builder --win"
   },
   "keywords": ["desktop-pet", "electron", "pixel-art", "openclaw", "ai"],
   "license": "MIT",
@@ -13,8 +15,24 @@
     "type": "git",
     "url": "https://github.com/liudijing07/pxpet.git"
   },
-  "dependencies": {
+  "build": {
+    "appId": "com.pxpet.app",
+    "productName": "pxpet",
+    "icon": "icon256.png",
+    "files": [
+      "**/*",
+      "!.env",
+      "!chat-history.json"
+    ],
+    "win": {
+      "target": "nsis"
+    }
+  },
+  "devDependencies": {
     "electron": "^35.2.1",
+    "electron-builder": "^26.8.1"
+  },
+  "dependencies": {
     "marked": "^15.0.0"
   }
 }
