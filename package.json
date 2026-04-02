@@ -18,7 +18,7 @@
   "build": {
     "appId": "com.pxpet.app",
     "productName": "pxpet",
-    "icon": "icon256.png",
+    "icon": "icon.ico",
     "files": [
       "**/*",
       "!.env",
@@ -31,8 +31,6 @@
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "perMachine": false,
-      "installerIcon": "icon256.png",
-      "uninstallerIcon": "icon256.png",
       "shortcutName": "pxpet"
     },
     "directories": {
