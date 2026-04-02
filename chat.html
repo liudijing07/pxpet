@@ -231,7 +231,21 @@
     const welcomeEmoji = document.getElementById('welcome-emoji');
     const welcomeText = document.getElementById('welcome-text');
 
-    const historyFile = pathMod.join(__dirname, 'chat-history.json');
+    const historyDir = (() => {
+      try {
+        const { app } = require('@electron/remote') || {};
+        return app ? app.getPath('userData') : __dirname;
+      } catch (e) {
+        // In packaged app, use ipc to get userData path
+        try {
+          const ud = ipcRenderer.sendSync('get-user-data-path');
+          return ud || __dirname;
+        } catch (e2) {
+          return __dirname;
+        }
+      }
+    })();
+    const historyFile = pathMod.join(historyDir, 'chat-history.json');
     let hasWelcome = true;
     let pendingImage = null;
 
@@ -386,9 +400,10 @@
         removeTypingIndicator();
         if (reply && reply.text) addMessage(reply.text, 'bot');
         else if (reply && reply.error) addMessage(`⚠️ ${reply.error}`, 'bot');
+        else addMessage('⚠️ No response received', 'bot');
       } catch (e) {
         removeTypingIndicator();
-        addMessage(`⚠️ 连接失败: ${e.message}`, 'bot');
+        addMessage(`⚠️ ${e.message || 'Unknown error'}`, 'bot');
       }
       sendBtn.disabled = false;
       msgInput.focus();

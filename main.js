@@ -140,6 +140,7 @@ function createTray() {
 // ===== IPC =====
 ipcMain.on('get-character', (e) => { e.returnValue = currentCharacter; });
 ipcMain.on('get-char-name', (e) => { e.returnValue = CHAR_NAMES[currentCharacter] || 'Pet'; });
+ipcMain.on('get-user-data-path', (e) => { e.returnValue = app.getPath('userData'); });
 ipcMain.on('get-frames-dir', (e) => { e.returnValue = getFramesDir(); });
 ipcMain.on('get-metadata', (e) => { e.returnValue = getMetadata(); });
 
