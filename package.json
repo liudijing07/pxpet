@@ -30,7 +30,13 @@
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
-      "perMachine": false
+      "perMachine": false,
+      "installerIcon": "icon256.png",
+      "uninstallerIcon": "icon256.png",
+      "shortcutName": "pxpet"
+    },
+    "directories": {
+      "output": "dist"
     }
   },
   "devDependencies": {
